@@ -1,3 +1,28 @@
+### Front-End
+
+- React Native (Expo or Bare Workflow)
+    - ShadCn for ready made components
+    - Animations: I will think about this
+- React Forms for user text input
+- React Navigation & Zustand (for state management + navigation)
+
+### Back-End
+
+- Firebase Auth & Firestore (or Supabase) or MongoDB
+- OpenAI API or Hugging Face models (for insights)
+- RevenueCat or stripe (for monitization)
+- API Framework: Node.js/Express.js for serving API Calls
+- Might have to use flask somewhere for AI processing
+
+To implement AI for generating insights, you can integrate:
+
+•    **OpenAI GPT API:** For generating insights based on user input
+
+•    **Hugging Face Sentiment Analysis:** To analyze emotions in user responses
+
+•    **Google Vertex AI / Firebase ML Kit:** If you want a mobile-optimized AI model
+
+
 # Welcome to your Expo app 👋
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
