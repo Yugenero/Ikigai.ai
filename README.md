@@ -3,7 +3,7 @@
 - React Native (Expo or Bare Workflow)
     - Components: Ok so apparently the best UI/Component Library for React Native is just regular stylesheets
         - StyleSheets → Creating your own custom components
-        - UI Kitten → Probably going to consider using this due to it’s ease of use and Tailwind like implementation
+        - UI Kitten → Probably going to consider using this due to it’s ease of use and implementation
     - Animations: I will think about this….
 - React Forms for user text input
 - React Navigation & Zustand (for state management + navigation)

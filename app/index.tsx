@@ -1,17 +1,17 @@
-import React from 'react';
-import { Button, Layout, Text, Card } from '@ui-kitten/components';
+import React, { useEffect } from 'react';
+import { Redirect } from 'expo-router';
+import { View, ActivityIndicator } from 'react-native';
 
-// 
 export default function Index() {
+  // You could add logic here to determine where to redirect
+  // For example, check if user is logged in and redirect accordingly
+  
   return (
-    <Layout style={{ flex: 1, justifyContent: 'center', padding: 16 }}>
-      <Card style={{ margin: 8 }}>
-        <Text category='h1'>UI Kitten Example</Text>
-        <Text category='div' style={{ marginVertical: 16 }}>
-          UI Kitten is successfully installed and working!
-        </Text>
-        <Button>BUTTON</Button>
-      </Card>
-    </Layout>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <ActivityIndicator size="large" />
+      {/* Redirect to welcome screen */}
+      <Redirect href="/main/welcome" />
+    </View>
   );
 }
+
