@@ -2,10 +2,11 @@ import { StyleSheet } from 'react-native';
 import { ikigaiColors } from './ikigai-theme';
 
 // Common UI styles to be reused across the app
-export const commonStyles = StyleSheet.create({
+export const ikigaiStyles = StyleSheet.create({
   // Layout styles
   container: {
     flex: 1,
+    flexDirection: 'column', // default
     backgroundColor: ikigaiColors.background.primary,
   },
   centeredContainer: {
@@ -75,7 +76,7 @@ export const commonStyles = StyleSheet.create({
 });
 
 // Screen-specific styles to be added here
-export const screenStyles = {
+export const screenScreenStyles = {
   // Home screen
   home: StyleSheet.create({
     header: {
