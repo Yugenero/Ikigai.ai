@@ -1,4 +1,4 @@
-### Ikigai
+# Ikigai
 
 ## Front-End
 
