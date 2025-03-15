@@ -1,8 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { ikigaiColors } from './ikigai-theme';
 
-// Common styles to be reused across the app
-
+// Common UI styles to be reused across the app
 export const commonStyles = StyleSheet.create({
   // Layout styles
   container: {

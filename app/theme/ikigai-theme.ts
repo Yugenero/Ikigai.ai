@@ -1,7 +1,8 @@
 import { light as lightTheme } from '@eva-design/eva';
 import { dark } from '@eva-design/eva';
 
-// Define your custom colors
+// Custom colors + palettes for ikigai
+
 export const ikigaiColors = {
   black: '#000000',
   white: '#FFFFFF',
