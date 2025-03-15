@@ -1,4 +1,4 @@
-# Ikigai
+# Ikigai.ai
 
 ## Front-End
 
