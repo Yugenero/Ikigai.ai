@@ -7,13 +7,11 @@ export const ikigaiStyles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column', // default
-    backgroundColor: ikigaiColors.background.primary,
   },
   centeredContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: ikigaiColors.background.primary,
   },
   row: {
     flexDirection: 'row',
@@ -76,7 +74,7 @@ export const ikigaiStyles = StyleSheet.create({
 });
 
 // Screen-specific styles to be added here
-export const screenScreenStyles = {
+export const screenStyles = {
   // Home screen
   home: StyleSheet.create({
     header: {
