@@ -4,7 +4,8 @@ import * as eva from '@eva-design/eva';
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { loadFonts } from './theme/fonts';
-import { ikigaiNeutralTheme, ikigaiMonoTheme } from './theme/ikigai-theme';
+import { ikigaiMonoTheme, ikigaiColors } from './theme/ikigai-theme';
+import { textStyles } from './theme/ikigai-typography';
 import * as SplashScreen from 'expo-splash-screen';
 
 SplashScreen.preventAutoHideAsync();
@@ -47,7 +48,19 @@ export default function RootLayout() {
           {/** Main */}
           <Stack.Screen name="index" options={{ headerShown: false }} />
           <Stack.Screen name="main/homescreen" options={{ title: 'Home' }} />
-          <Stack.Screen name="main/welcome" options={{ headerShown: false }} />
+          <Stack.Screen name="main/welcome" options={{ 
+            title: 'IkigAI',
+            headerTitleAlign: 'center',
+            headerStyle : {
+              backgroundColor: ikigaiColors.mono.background,
+            },
+            headerTitleStyle: { 
+              fontWeight: '700', 
+              fontSize: textStyles.h2.fontSize,
+            },
+            headerShadowVisible: false,
+            headerTintColor: ikigaiColors.mono.text,
+          }} />
 
           {/** Authentication */}
           <Stack.Screen name='main/profile' options={{ title: 'Profile'}}/>

@@ -138,7 +138,7 @@ export default function IkigaiVennAnimation() {
 		  // stroke="#FF6B6B" 
 		  stroke="#FFFFFF"
 		  fill="transparent"
-		  strokeWidth="1"
+		  strokeWidth='0.5'
 		  strokeDasharray={circumference}
 		  animatedProps={circle1Props}
 		/>
@@ -151,7 +151,7 @@ export default function IkigaiVennAnimation() {
 		  // stroke="#6BB2FF"
 		  stroke="#FFFFFF"
 		  fill="transparent"
-		  strokeWidth="1"
+		  strokeWidth='0.5'
 		  strokeDasharray={circumference}
 		  animatedProps={circle2Props}
 		/>
@@ -164,7 +164,7 @@ export default function IkigaiVennAnimation() {
 		  // stroke="#FFCE6B"
 		  stroke="#FFFFFF"
 		  fill="transparent"
-		  strokeWidth="1"
+		  strokeWidth='0.5'
 		  strokeDasharray={circumference}
 		  animatedProps={circle3Props}
 		/>
@@ -177,7 +177,7 @@ export default function IkigaiVennAnimation() {
 		  // stroke="#6BFFB2"
 		  fill="transparent"
 		  stroke="#FFFFFF"
-		  strokeWidth="1"
+		  strokeWidth='0.5'
 		  strokeDasharray={circumference}
 		  animatedProps={circle4Props}
 		/>
