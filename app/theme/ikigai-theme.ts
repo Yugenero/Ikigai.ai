@@ -1,25 +1,27 @@
 import { light as lightTheme } from '@eva-design/eva';
-import { dark } from '@eva-design/eva';
 
 // Custom colors + palettes for ikigai
-
 export const ikigaiColors = {
-  black: '#000000',
-  white: '#FFFFFF',
 
-  // Add your brand colors
+  // Primary/Accent colors
+  primary1: '#000000',
+  primary2: '#FFFFFF',
+
+  // Brand colors 
   brand: {
     primary: '#3366FF',
     secondary: '#2C3E50',
     accent: '#6A1B9A',
   },
+
   // Background colors
   background: {
     primary: '#FFFFFF',
     secondary: '#F7F9FC',
     tertiary: '#EDF1F7',
   },
-  // Text colors
+
+  // Text color
   text: {
     primary: '#222B45',
     secondary: '#8F9BB3',
@@ -27,8 +29,15 @@ export const ikigaiColors = {
     disabled: '#8F9BB3',
     inverse: '#FFFFFF',
   },
+  
+  // Ikigai monochrome palette
+  mono: {
+    background: "#000000", // Black - For a sophisticated, modern look
+    surface: '#F7F9FC', // Light Gray - For cards/containers
+    text: '#FFFFFF', // White text for white on black
+  },
 
-  // Ikigai soft-neutral theme
+  // Ikigai soft-neutral palette
   neutral: {
     background: '#F5F2EB',    // Light Beige - Calming, warm base
     surface: '#FCFBF8',       // Off-White - For cards/containers
@@ -42,7 +51,7 @@ export const ikigaiColors = {
   }
 };
 
-// Define your typography
+// Typography
 export const appFontSizes = {
   tiny: 10,
   small: 12,
@@ -54,6 +63,7 @@ export const appFontSizes = {
   jumbo: 32,
 };
 
+// Font weights
 export const appFontWeights = {
   light: '300',
   regular: '400',
@@ -62,8 +72,12 @@ export const appFontWeights = {
   bold: '700',
 };
 
-// Create the custom theme by extending Eva's light theme
-export const ikigaiTheme = {
+/* 
+In UI Kitten terms - theme is a json or a JavaScript object, structured in a particular way
+Create a custom theme by extending Eva's default light theme
+*/
+// Ikigai Themes
+export const ikigaiNeutralTheme = {
   ...lightTheme,
   
   // Override Eva's colors with our custom colors
@@ -109,7 +123,32 @@ export const ikigaiTheme = {
   'color-basic-1000': ikigaiColors.neutral.textDark,
   'color-basic-1100': ikigaiColors.neutral.textDark,
 };
-
 // Create a dark theme if needed
-export const customDarkTheme = {
+export const ikigaiMonoTheme = {
+  ...lightTheme,
+  
+  // Override Eva's colors with our custom colors
+  'color-primary-100': ikigaiColors.mono.surface + '20', // 20% opacity
+  'color-primary-200': ikigaiColors.mono.surface + '40', // 40% opacity
+  'color-primary-300': ikigaiColors.mono.surface + '60', // 60% opacity
+  'color-primary-400': ikigaiColors.mono.surface + '80', // 80% opacity
+  'color-primary-500': ikigaiColors.mono.surface,
+  'color-primary-600': ikigaiColors.mono.background,
+  'color-primary-700': ikigaiColors.mono.background,
+  'color-primary-800': ikigaiColors.mono.background,
+  'color-primary-900': ikigaiColors.mono.background,
+  
+  // Override Eva's text colors
+  'text-basic-color': ikigaiColors.mono.text,
+  
+  // Override Eva's background colors
+  'background-basic-color-1': ikigaiColors.mono.background,
+  
+  // Additional customizations
+  'color-basic-100': ikigaiColors.mono.surface,
+  'color-basic-200': ikigaiColors.mono.background,
 }; 
+// export const pastelTheme
+export const ikigaiPastelThem = {
+  // 
+}
