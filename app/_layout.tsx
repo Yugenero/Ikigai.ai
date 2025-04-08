@@ -49,7 +49,7 @@ export default function RootLayout() {
           <Stack.Screen name="index" options={{ headerShown: false }} />
           <Stack.Screen name="main/homescreen" options={{ title: 'Home' }} />
           <Stack.Screen name="main/welcome" options={{ 
-            title: 'IkigAI',
+            title: 'Ikigai.ai',
             headerTitleAlign: 'center',
             headerStyle : {
               backgroundColor: ikigaiColors.mono.background,
