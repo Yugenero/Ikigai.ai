@@ -1,6 +1,9 @@
 import { StyleSheet } from 'react-native';
 import { ikigaiColors } from './ikigai-theme';
 
+/**
+ * MIGHT MAKE SCREEN SPECIFIC STYLES IN SEPARATE FILES TBD
+ */
 // Common UI styles to be reused across the app
 export const ikigaiStyles = StyleSheet.create({
   // Layout styles
