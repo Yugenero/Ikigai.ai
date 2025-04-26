@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { StyleSheet, View, TouchableWithoutFeedback, Keyboard, Platform } from 'react-native';
 import { Button, Input, Layout, Text, Icon } from '@ui-kitten/components';
 import { useRouter } from 'expo-router';
-import { ikigaiColors } from '../theme/ikigai-theme';
-import { textStyles } from '../theme/ikigai-typography';
+import { ikigaiColors } from '../../theme/ikigai-theme';
+import { textStyles } from '../../theme/ikigai-typography';
 
 export default function LoginScreen() {
   const [email, setEmail] = useState('');
@@ -15,18 +15,18 @@ export default function LoginScreen() {
     // Here you would add authentication logic
     console.log('Login with:', email, password);
     // For now, just navigate to homescreen
-    router.push('/main/homescreen');
+    router.push('/main/screens/homescreen');
   };
 
   const navigateToSignup = () => {
-    router.push('/authentication/signup');
+    router.push('/authentication/screens/signupscreen');
   };
 
   const toggleSecureEntry = () => {
     setSecureTextEntry(!secureTextEntry);
   };
   
-  const renderEyeIcon = (props) => (
+  const renderEyeIcon = (props: any) => (
     <TouchableWithoutFeedback onPress={toggleSecureEntry}>
       <Icon {...props} name={secureTextEntry ? 'eye-off' : 'eye'}/>
     </TouchableWithoutFeedback>
@@ -89,9 +89,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   subtitle: {
-    ...textStyles.body,
+    ...textStyles.bodyMedium,
     textAlign: 'center',
-    color: ikigaiColors.mono.textSecondary,
+    color: ikigaiColors.mono.text,
   },
   form: {
     width: '100%',
@@ -109,12 +109,12 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   signupText: {
-    ...textStyles.body,
-    color: ikigaiColors.mono.textSecondary,
+    ...textStyles.bodyMedium,
+    color: ikigaiColors.mono.text,
   },
   signupLink: {
-    ...textStyles.body,
-    color: ikigaiColors.primary,
+    ...textStyles.bodyMedium,
+    color: ikigaiColors.mono.text,
     fontWeight: 'bold',
   },
 });

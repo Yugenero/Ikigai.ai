@@ -33,9 +33,9 @@ export default function IkigaiVennAnimation() {
 		opacity.value = withTiming(1, { duration: 300 });
 		
 		// Draw animation + undraw animation sequence
-		const drawDuration = 1500;
-		const pauseDuration = 3000; // Time to wait before reversing
-		const undrawDuration = 1500;
+		const drawDuration = 1000;
+		const pauseDuration = 1500; // Time to wait before reversing
+		const undrawDuration = 1000;
 		
 		// Circle 1 - Draw then undraw
 		dashOffset1.value = withSequence(

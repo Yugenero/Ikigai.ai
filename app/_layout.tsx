@@ -47,7 +47,7 @@ export default function RootLayout() {
 
           {/** Main */}
           <Stack.Screen name="index" options={{ headerShown: false }} />
-          <Stack.Screen name="main/welcome" options={{ 
+          <Stack.Screen name="main/screens/welcome" options={{ 
             title: 'Ikigai.ai',
             headerTitleAlign: 'center',
             headerStyle : {
@@ -60,12 +60,12 @@ export default function RootLayout() {
             headerShadowVisible: false,
             headerTintColor: ikigaiColors.mono.text,
           }} />
-          <Stack.Screen name="main/homescreen" options={{ title: 'Home' }} />
-          <Stack.Screen name='main/profile' options={{ title: 'Profile'}}/>
+          <Stack.Screen name="main/screens/homescreen" options={{ title: 'Home' }} />
+          <Stack.Screen name='main/screens/profilescreen' options={{ title: 'Profile'}}/>
 
           {/** Authentication */}
-          <Stack.Screen name='authentication/loginscreen' options={{ title: 'Login' }} />
-          <Stack.Screen name='authentication/signupscreen' options={{ title: 'Sign-in' }} />
+          <Stack.Screen name='authentication/screens/loginscreen' options={{ title: 'Login' }} />
+          <Stack.Screen name='authentication/screens/signupscreen' options={{ title: 'Sign-in' }} />
         </Stack>
       </ApplicationProvider>
     </>

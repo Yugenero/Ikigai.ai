@@ -10,7 +10,7 @@ export default function Index() {
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <ActivityIndicator size="large" />
       {/* Redirect to welcome screen */}
-      <Redirect href="/main/welcome" />
+      <Redirect href="/main/screens/welcome" />
     </View>
   );
 }
