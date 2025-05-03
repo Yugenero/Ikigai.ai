@@ -14,6 +14,18 @@ export default {
       supportsTablet: true,
       bundleIdentifier: "ai.ikigai.app"
     },
+    extra: {
+      // Firebase
+      firebaseApiKey:     process.env.FIREBASE_API_KEY,
+      firebaseAuthDomain: process.env.FIREBASE_AUTH_DOMAIN,
+      firebaseProjectId:  process.env.FIREBASE_PROJECT_ID,
+      firebaseStorageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+      firebaseMessagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+      firebaseAppId:      process.env.FIREBASE_APP_ID,
+      // Google
+      googleWebClientId:  process.env.GOOGLE_WEB_CLIENT_ID,
+      googleIosClientId:  process.env.GOOGLE_IOS_CLIENT_ID,
+    },
     android: {
       adaptiveIcon: {
         foregroundImage: "./assets/images/adaptive-icon.png",
@@ -24,11 +36,9 @@ export default {
     web: {
       bundler: "metro",
       output: "static",
-      favicon: "./assets/images/favicon.png"
     },
     plugins: [
       "expo-router",
-      "expo-auth-session",
       [
         "expo-splash-screen",
         {
@@ -42,21 +52,6 @@ export default {
     ],
     experiments: {
       typedRoutes: true
-    },
-    extra: {
-      firebaseApiKey: process.env.FIREBASE_API_KEY,
-      firebaseAuthDomain: process.env.FIREBASE_AUTH_DOMAIN,
-      firebaseProjectId: process.env.FIREBASE_PROJECT_ID,
-      firebaseStorageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-      firebaseMessagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
-      firebaseAppId: process.env.FIREBASE_APP_ID,
-
-      // Access env variables here
-      googleWebClientId: process.env.GOOGLE_WEB_CLIENT_ID,
-      googleIosClientId: process.env.GOOGLE_IOS_CLIENT_ID,
-      eas: {
-        projectId: process.env.EAS_PROJECT_ID
-      }
     }
   }
 };

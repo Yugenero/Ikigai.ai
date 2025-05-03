@@ -5,10 +5,10 @@ import { useRouter } from 'expo-router';
 import { ikigaiColors } from '../../theme/ikigai-theme';
 import { textStyles } from '../../theme/ikigai-typography';
 import * as WebBrowser from 'expo-web-browser';
-import * as Google from 'expo-auth-session/providers/google';
+import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
+import { googleSignIn, appleSignIn } from '../services/authService';
 import * as AppleAuthentication from 'expo-apple-authentication';
 import { useEffect } from 'react';
-import { googleSignIn, appleSignIn } from '../services/authService';
 import Constants from 'expo-constants';
 
 // Important for Google Auth flow
@@ -17,73 +17,38 @@ WebBrowser.maybeCompleteAuthSession();
 export default function SignupScreen() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  
+
   // Google Sign-In configuration with complete set of options
-  const [request, response, promptAsync] = Google.useIdTokenAuthRequest({
-    clientId: Constants.expoConfig?.extra?.googleWebClientId,
-    iosClientId: Constants.expoConfig?.extra?.googleIosClientId,
-    // We'll use idToken flow instead of accessToken for better compatibility
-  });
-  
-  // Handle Google auth response
   useEffect(() => {
-    if (response?.type === 'success') {
-      const { id_token } = response.params;
-      handleGoogleSuccess(id_token);
-    } else if (response?.type === 'error') {
-      Alert.alert(
-        'Authentication Error',
-        'There was a problem signing in with Google. Please try again.',
-        [{ text: 'OK' }]
-      );
-      setIsLoading(false);
-    }
-  }, [response]);
+    GoogleSignin.configure({
+      webClientId: Constants.expoConfig?.extra?.googleWebClientId,
+      iosClientId: Constants.expoConfig?.extra?.googleIosClientId,
+    });
+  }, []);
 
   // Handle Google sign-in button press
   const handleGoogleSignIn = async () => {
-    try {
+    try { 
       setIsLoading(true);
-      if (!request) {
-        Alert.alert(
-          'Configuration Error', 
-          'Google authentication is not properly configured.',
-          [{ text: 'OK' }]
-        );
-        setIsLoading(false);
-        return;
+      await GoogleSignin.hasPlayServices();
+      const userInfo = await GoogleSignin.signIn();
+
+      if (userInfo.idToken) {
+        const user = await googleSignIn(userInfo.idToken);
+        router.replace('/main/screens/homescreen');
       }
-      await promptAsync();
-    } catch (error) {
-      console.error('Error initiating Google sign-in:', error);
-      Alert.alert(
-        'Authentication Error',
-        'Failed to start Google authentication',
-        [{ text: 'OK' }]
-      );
+    }
+    catch (error) {
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+        // User canceled the flow
+      } else {
+        Alert.alert('Google Sign-In Error', 'Something went wrong with Google sign-in.');
+      }
+      console.error('Google Sign-In Error:', error);
+    } finally {
       setIsLoading(false);
     }
-  };
-
-  // Handle successful Google sign-in
-  const handleGoogleSuccess = async (idToken: string) => {
-    try {
-      const user = await googleSignIn(idToken);
-      if (user) {
-        router.replace('/main/screens/homescreen');
-      } else {
-        throw new Error('User data not returned');
-      }
-    } catch (error) {
-      console.error('Error during Google sign-in:', error);
-      Alert.alert(
-        'Authentication Error',
-        'There was a problem completing your sign-in. Please try again.',
-        [{ text: 'OK' }]
-      );
-    }
-    setIsLoading(false);
-  };
+  }
   
   // Handle Apple sign-in
   const handleAppleSignIn = async () => {
