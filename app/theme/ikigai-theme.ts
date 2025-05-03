@@ -19,6 +19,7 @@ export const ikigaiColors = {
     primary: '#FFFFFF',
     secondary: '#F7F9FC',
     tertiary: '#EDF1F7',
+    black: '#000000',
   },
 
   // Text color

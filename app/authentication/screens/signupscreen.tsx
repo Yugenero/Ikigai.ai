@@ -8,6 +8,7 @@ import * as WebBrowser from 'expo-web-browser';
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 import { googleSignIn, appleSignIn } from '../services/authService';
 import * as AppleAuthentication from 'expo-apple-authentication';
+import { GoogleLogo } from '../components/googlesvg'
 import { useEffect } from 'react';
 import Constants from 'expo-constants';
 
@@ -106,12 +107,7 @@ export default function SignupScreen() {
           appearance="outline"
           onPress={handleGoogleSignIn}
           disabled={isLoading}
-          accessoryLeft={() => (
-            <Image 
-              source={require('../../../assets/images/google-icon.png')} 
-              style={styles.socialIcon} 
-            />
-          )}
+          accessoryLeft={GoogleLogo}
         >
           Continue with Google
         </Button>
@@ -134,12 +130,6 @@ export default function SignupScreen() {
         </View>
         
         {/* Standard Email Signup Button */}
-        <Button 
-          style={styles.emailButton} 
-          onPress={navigateToEmailSignup}
-          disabled={isLoading}>
-          Sign up with Email
-        </Button>
 
         <View style={styles.loginContainer}>
           <Text style={styles.loginText}>Already have an account? </Text>
@@ -152,6 +142,7 @@ export default function SignupScreen() {
   );
 }
 
+// Page Styles
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -187,7 +178,7 @@ const styles = StyleSheet.create({
     width: '100%',
     maxWidth: 320,
     borderColor: ikigaiColors.mono.text,
-    borderRadius: 8,
+    borderWidth: 0.5,
   },
   socialIcon: {
     width: 18,
