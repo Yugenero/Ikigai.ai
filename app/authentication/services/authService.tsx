@@ -5,12 +5,6 @@ import {
   } from 'firebase/auth';
   import { doc, setDoc, getDoc, serverTimestamp } from 'firebase/firestore';
   import { auth, db } from './firebaseconfig';
-  
-  // Google Sign-in
-// Interface for Google sign-in parameters
-interface GoogleSignInCredential {
-	idToken: string;
-}
 
 // Interface for user return type
 interface FirebaseUser {
@@ -22,10 +16,9 @@ interface FirebaseUser {
 
 export const googleSignIn = async (idToken: string): Promise<FirebaseUser> => {
 	try {
-		// Create a credential with the ID token
+		// Take the ID token from Google sign-in and verify it
 		const credential = GoogleAuthProvider.credential(idToken);
-		
-		// Sign in with the credential
+		// Create a new user credential using the ID token
 		const userCredential = await signInWithCredential(auth, credential);
 		const user = userCredential.user as FirebaseUser;
 		await saveUserToFirestore(user);

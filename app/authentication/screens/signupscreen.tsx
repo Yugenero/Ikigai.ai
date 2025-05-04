@@ -37,13 +37,13 @@ export default function SignupScreen() {
 
       if (isSuccessResponse(response)) {
         const { idToken, user } = response.data;
-        const { name, email, photo } = user;
+        if (idToken) { await googleSignIn(idToken) };
+        router.replace('/main/screens/homescreen');
       } else {
         // TODO: Show error message to user on interface  
         console.log('Google Sign-In failed. Please try again.');
-      }
+      } 
       setIsSubmitting(false);
-      // Navigate to home screen after successful sign-in
       router.replace('/main/screens/homescreen');
     }
 
@@ -59,8 +59,9 @@ export default function SignupScreen() {
       } else {
         console.error('Google Sign-In error:', error);
       }
-    } 
-    setIsSubmitting(false);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   
   // Handle Apple sign-in

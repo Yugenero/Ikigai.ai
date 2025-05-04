@@ -15,7 +15,7 @@ import {
 export let fontsLoaded = false;
 
 // Helper function to update the font loaded state
-export function setFontsLoaded(value) {
+export function setFontsLoaded(value: boolean) {
 	fontsLoaded = value;
 }
 
