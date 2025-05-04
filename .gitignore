@@ -38,3 +38,6 @@ yarn-error.*
 
 # personal-files
 notes.md
+
+# constants
+constants.ts

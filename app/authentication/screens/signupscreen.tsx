@@ -5,7 +5,7 @@ import { useRouter } from 'expo-router';
 import { ikigaiColors } from '../../theme/ikigai-theme';
 import { textStyles } from '../../theme/ikigai-typography';
 import * as WebBrowser from 'expo-web-browser';
-import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
+import { GoogleSignin, isSuccessResponse, isErrorWithCode, GoogleSigninButton, statusCodes } from '@react-native-google-signin/google-signin';
 import { googleSignIn, appleSignIn } from '../services/authService';
 import * as AppleAuthentication from 'expo-apple-authentication';
 import { GoogleLogo } from '../components/googlesvg'
@@ -17,44 +17,56 @@ WebBrowser.maybeCompleteAuthSession();
 
 export default function SignupScreen() {
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [statusMessage, setStatusMessage] = useState('');
 
   // Google Sign-In configuration with complete set of options
   useEffect(() => {
     GoogleSignin.configure({
       webClientId: Constants.expoConfig?.extra?.googleWebClientId,
       iosClientId: Constants.expoConfig?.extra?.googleIosClientId,
+      profileImageSize: 120,
+      // Force the account picker dialog to show every time
     });
   }, []);
 
-  // Handle Google sign-in button press
   const handleGoogleSignIn = async () => {
     try { 
-      setIsLoading(true);
-      await GoogleSignin.hasPlayServices();
-      const userInfo = await GoogleSignin.signIn();
+      setIsSubmitting(true);
+      const response = await GoogleSignin.signIn();
 
-      if (userInfo.idToken) {
-        const user = await googleSignIn(userInfo.idToken);
-        router.replace('/main/screens/homescreen');
-      }
-    }
-    catch (error) {
-      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        // User canceled the flow
+      if (isSuccessResponse(response)) {
+        const { idToken, user } = response.data;
+        const { name, email, photo } = user;
       } else {
-        Alert.alert('Google Sign-In Error', 'Something went wrong with Google sign-in.');
+        // TODO: Show error message to user on interface  
+        console.log('Google Sign-In failed. Please try again.');
       }
-      console.error('Google Sign-In Error:', error);
-    } finally {
-      setIsLoading(false);
+      setIsSubmitting(false);
+      // Navigate to home screen after successful sign-in
+      router.replace('/main/screens/homescreen');
     }
-  }
+
+    // Handle errors
+    catch (error) {
+      if (isErrorWithCode(error)) {
+        switch (error.code) {
+          case statusCodes.IN_PROGRESS:
+            console.log('Sign-in is in progress');
+          default:
+            console.error('Google Sign-In error:', error);
+        }
+      } else {
+        console.error('Google Sign-In error:', error);
+      }
+    } 
+    setIsSubmitting(false);
+  };
   
   // Handle Apple sign-in
   const handleAppleSignIn = async () => {
     try {
-      setIsLoading(true);
+      setIsSubmitting(true);
       const credential = await AppleAuthentication.signInAsync({
         requestedScopes: [
           AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
@@ -74,7 +86,7 @@ export default function SignupScreen() {
         );
       }
     } finally {
-      setIsLoading(false);
+      setIsSubmitting(false);
     }
   };
   
@@ -91,7 +103,8 @@ export default function SignupScreen() {
 
   return (
     <Layout style={styles.container}>
-      {isLoading && (
+      
+      {isSubmitting && (
         <View style={styles.loadingOverlay}>
           <Spinner size="large" />
         </View>
@@ -102,15 +115,25 @@ export default function SignupScreen() {
         <Text style={styles.subtitle}>Sign up to start your journey</Text>
         
         {/* Google Sign-in Button */}
-        <Button
+        {/* <Button
           style={styles.socialButton}
           appearance="outline"
-          onPress={handleGoogleSignIn}
           disabled={isLoading}
           accessoryLeft={GoogleLogo}
+          onPress={() => {
+            console.log('Google Sign-In button pressed');
+            handleGoogleSignIn();
+          }}
         >
           Continue with Google
-        </Button>
+        </Button> */}
+
+        <GoogleSigninButton
+          size={GoogleSigninButton.Size.Wide}
+          color={GoogleSigninButton.Color.Dark}
+          onPress={handleGoogleSignIn}
+          disabled={isSubmitting}
+        />
         
         {/* Apple Sign-in Button - Only show on iOS */}
         {Platform.OS === 'ios' && (
@@ -133,7 +156,7 @@ export default function SignupScreen() {
 
         <View style={styles.loginContainer}>
           <Text style={styles.loginText}>Already have an account? </Text>
-          <TouchableOpacity onPress={navigateToLogin} disabled={isLoading}>
+          <TouchableOpacity onPress={navigateToLogin} disabled={isSubmitting}>
             <Text style={styles.loginLink}>Sign In</Text>
           </TouchableOpacity>
         </View>
