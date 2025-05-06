@@ -34,7 +34,7 @@ export default function SignupScreen() {
     try { 
       setIsSubmitting(true);
       const response = await GoogleSignin.signIn();
-
+      console.log('Google Sign-In response:', response);
       if (isSuccessResponse(response)) {
         const { idToken, user } = response.data;
         if (idToken) { await googleSignIn(idToken) };
@@ -116,25 +116,24 @@ export default function SignupScreen() {
         <Text style={styles.subtitle}>Sign up to start your journey</Text>
         
         {/* Google Sign-in Button */}
-        {/* <Button
+        <Button
           style={styles.socialButton}
           appearance="outline"
-          disabled={isLoading}
+          disabled={isSubmitting}
           accessoryLeft={GoogleLogo}
           onPress={() => {
-            console.log('Google Sign-In button pressed');
             handleGoogleSignIn();
           }}
         >
           Continue with Google
-        </Button> */}
+        </Button>
 
-        <GoogleSigninButton
+        {/* <GoogleSigninButton
           size={GoogleSigninButton.Size.Wide}
           color={GoogleSigninButton.Color.Dark}
           onPress={handleGoogleSignIn}
           disabled={isSubmitting}
-        />
+        /> */}
         
         {/* Apple Sign-in Button - Only show on iOS */}
         {Platform.OS === 'ios' && (
