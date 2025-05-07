@@ -34,7 +34,6 @@ export default function SignupScreen() {
     try { 
       setIsSubmitting(true);
       const response = await GoogleSignin.signIn();
-      console.log('Google Sign-In response:', response);
       if (isSuccessResponse(response)) {
         const { idToken, user } = response.data;
         if (idToken) { await googleSignIn(idToken) };

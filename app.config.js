@@ -39,13 +39,18 @@ export default {
     },
     plugins: [
       "expo-router",
-      ["@react-native-google-signin/google-signin"],
+      [
+        "@react-native-google-signin/google-signin",
+        {
+          "iosUrlScheme": "com.googleusercontent.apps.326117409484-hoi3k64ios1ldroel9jcbl13e458dqug"
+        }
+      ],
       [
         "expo-splash-screen",
         {
           "image": "./assets/images/splash-icon.png",
           "imageWidth": 200,
-          "resizeMode": "contain",
+          "resizeMode": "contain", 
           "backgroundColor": "#ffffff"
         }
       ],
