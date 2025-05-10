@@ -10,7 +10,17 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "ai.ikigai.app"
+      "bundleIdentifier": "ai.ikigai.app",
+      "infoPlist": {
+        "CFBundleURLTypes": [
+          {
+            "CFBundleTypeRole": "Editor",
+            "CFBundleURLSchemes": [
+              "com.googleusercontent.apps.326117409484-hoi3k64ios1ldroel9jcbl13e458dqug"
+            ]
+          }
+        ]
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -24,16 +34,23 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      "expo-router",
-      [
-        "expo-splash-screen",
-        "@react-native-google-signin/google-signin",
-        {
-          "iosUrlScheme": "com.googleusercontent.apps.326117409484-hoi3k64ios1ldroel9jcbl13e458dqug",
-        }
-      ],
-      
-      "expo-font"
+        "expo-router",
+        [
+          "@react-native-google-signin/google-signin",
+          {
+            "iosUrlScheme": "com.googleusercontent.apps.326117409484-hoi3k64ios1ldroel9jcbl13e458dqug"
+          }
+        ],
+        [
+          "expo-splash-screen",
+          {
+            "image": "./assets/images/splash-icon.png",
+            "imageWidth": 200,
+            "resizeMode": "contain",
+            "backgroundColor": "#ffffff"
+          }
+        ],
+        "expo-font"
     ],
     "experiments": {
       "typedRoutes": true
